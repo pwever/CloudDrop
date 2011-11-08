@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>CloudDrop</title>
+	<link rel="stylesheet" href="/styles.css" type="text/css" media="screen" charset="utf-8">
+</head>
+<body>
+	<div class="container">
+		<div class="content">
+			<% if defined? note then %>
+			<p class="note"><%= note %></p>
+			<% end %>
+		
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

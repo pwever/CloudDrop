@@ -1,0 +1,26 @@
+
+html, body {
+	margin: 0;
+	padding: 1em;
+}
+
+.container {
+	
+}
+
+.container > .content {
+	width: 16em;
+	height: 12em;
+	margin: 0 auto;
+	padding: 1em;
+	font-size: 0.76em;
+}
+
+.note {
+	color: red;
+}
+
+#uploadform input {
+	width: 16em;
+}
+
