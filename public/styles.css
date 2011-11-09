@@ -1,7 +1,9 @@
 
-html, body {
+body {
 	margin: 0;
 	padding: 1em;
+	background-color: ;
+	background: #E1EFF7 no-repeat center url(/cloud.png);
 }
 
 .container {
@@ -11,16 +13,17 @@ html, body {
 .container > .content {
 	width: 16em;
 	height: 12em;
-	margin: 0 auto;
+	margin: 20% auto;
 	padding: 1em;
 	font-size: 0.76em;
+	
 }
 
 .note {
 	color: red;
 }
 
-#uploadform input {
+input {
 	width: 16em;
 }
 

@@ -1,4 +1,6 @@
 
+![](Screenshot.png)
+
 # CloudDrop
 
 CloudDrop is a super simple web application, which allows you to upload a file, and share a obscured URL for people to download it (ie clouddrop.org/820v$F194).
