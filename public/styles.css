@@ -3,7 +3,7 @@ body {
 	margin: 0;
 	padding: 1em;
 	background-color: ;
-	background: #E1EFF7 no-repeat center url(/cloud.png);
+	background: #E1EFF7 center url(/wave.jpg);
 }
 
 .container {
@@ -11,12 +11,15 @@ body {
 }
 
 .container > .content {
-	width: 16em;
-	height: 12em;
+	display: table;
+	width: 14.5em;
 	margin: 20% auto;
 	padding: 1em;
 	font-size: 0.76em;
-	
+	background-color: white;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
 }
 
 .note {
