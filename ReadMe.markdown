@@ -13,9 +13,9 @@ There are very few security considerations. The server admin can look at files f
 Screengrabs
 -----------
 
-![](http://www.knittingpixel.com/projects/clouddrop-screengrab-2.png)
+![](https://lh4.googleusercontent.com/-Eajphmwn-_E/T1GfUtDELCI/AAAAAAAADB4/T_S1rOlRHfM/s679/clouddrop-screengrab-1.png)
 
-![](http://www.knittingpixel.com/projects/clouddrop-screengrab-3.png)
+![](https://lh5.googleusercontent.com/-UscYQeiIVkk/T1GfVJ6btAI/AAAAAAAADCE/gt_5xuMOVAs/s679/clouddrop-screengrab-3.png)
 
 
 
