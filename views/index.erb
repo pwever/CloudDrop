@@ -1,15 +1,8 @@
-
-<script type="text/javascript" src="/uploader.js"></script>
-<script type="text/javascript">
-	window.onload = function(e) {
-		if (window.File && window.FileList && window.FileReader) {
-			new Uploader("drop_target", "/");
-		}
-	}
-</script>
-
-<form id="uploadform" action="/" method="post" enctype="multipart/form-data">
-	<input type="file" name="file" value="" id="file"><br>
-	<input type="text" name="zippwd" value="" id="zippwd" placeholder="Password (optional)"><br>
-	<input type="submit" value="Upload &uarr;">
-</form>
+<div class="upload">
+	<h2>File Upload</h2>
+	<form action="/" method="post" enctype="multipart/form-data">
+		<input type="file" name="file" value=""><br>
+		<input type="text" name="zippwd" value="" placeholder="Password (optional)"><br>
+		<input type="submit" value="Upload &uarr;">
+	</form>
+</div>

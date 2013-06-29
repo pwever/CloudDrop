@@ -30,9 +30,8 @@ class MyApp < Sinatra::Base
 
   # Any file posted to the root is zipped and stored
   post '/' do
-    puts "================================"
     puts params
-    puts "================================"
+
 
     unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
       @error = "No file selected"
@@ -65,14 +64,27 @@ class MyApp < Sinatra::Base
       end
     end
     File.delete(tmpfile)
-    redirect "/view/%s" % hashname
+    
+    if (params[:ajax]) then
+      Zip::Archive.open(zippath) do |ar|
+        d = Date.parse(File.mtime(zippath).to_s) + 14
+        erb :post, :layout => false, :locals => {:uri => url("/%s" % hashname), :filename => ar.get_name(0), :filesize => ar.get_stat(0).size.to_human, :expires_on => d.to_s}
+      end
+    else
+      redirect "/view/%s" % hashname
+    end
+    
   end
 
 
   # this shows the link to the file
   get '/view/:needle' do |needle|
+    puts "/view/:needle received this request: %s" % request
+
+
     fileuri = url( "/%s" % needle )
     archive_path = File.join('.', 'drops', '%s.zip' % needle)
+    
     if (File.exists? archive_path) then
       Zip::Archive.open(archive_path) do |ar|
         d = Date.parse(File.mtime(archive_path).to_s) + 14
@@ -86,19 +98,26 @@ class MyApp < Sinatra::Base
 
   # this serves the actual file
   get '/:needle' do |needle|
+
+    # NOTE: This should really happen on a cron job
+    delete_old_files
+
     srcpath = File.join(".", "drops", "%s.zip" % needle)
     # Check if file exists
     if (File.exists? srcpath) then
-        Zip::Archive.open(srcpath) do |ar|
-          attachment ar.get_name(0)
-          ar.fopen(ar.get_name(0)) do |af|
-            af.read
-          end
-        end
     
-      else
-        erb :index, :locals => { :note => "File not found." }
+      Zip::Archive.open(srcpath) do |ar|
+        attachment ar.get_name(0)
+
+        ar.fopen(ar.get_name(0)) do |af|
+          af.read
+        end
       end
+
+    else
+      erb :index, :locals => { :note => "File not found." }
+    end
+
   end
 
 

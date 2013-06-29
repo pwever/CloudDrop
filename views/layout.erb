@@ -1,17 +1,29 @@
 <html>
 <head>
 	<title>CloudDrop</title>
+	<script type="text/javascript" src="/uploader.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			if (window.File && window.FileList && window.FileReader) {
+				uploader = new Uploader("drop_target", "/");
+				// link up the upload form
+				var form = document.getElementsByTagName("form")[0];
+				form.onsubmit = function(evt) {
+					evt.preventDefault();
+					uploader.upload(form);
+				}
+			}
+		}
+	</script>
 	<link rel="stylesheet" href="/styles.css" type="text/css" media="screen" charset="utf-8">
 </head>
 <body id="drop_target">
-	<div class="container">
-		<div class="content">
-			<% if defined? note then %>
-			<p class="note"><%= note %></p>
-			<% end %>
-		
-			<%= yield %>
-		</div>
+	<div id="container">
+		<% if defined? note then %>
+		<p class="note"><%= note %></p>
+		<% end %>
+	
+		<%= yield %>
 	</div>
 </body>
 </html>
