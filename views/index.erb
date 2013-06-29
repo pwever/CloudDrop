@@ -1,5 +1,12 @@
 
-
+<script type="text/javascript" src="/uploader.js"></script>
+<script type="text/javascript">
+	window.onload = function(e) {
+		if (window.File && window.FileList && window.FileReader) {
+			new Uploader("drop_target", "/");
+		}
+	}
+</script>
 
 <form id="uploadform" action="/" method="post" enctype="multipart/form-data">
 	<input type="file" name="file" value="" id="file"><br>

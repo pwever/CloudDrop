@@ -1,9 +1,11 @@
 
+html, body { height: 100%; }
+
 body {
 	margin: 0;
 	padding: 1em;
 	background-color: ;
-	background: #E1EFF7 center url(/wave.jpg);
+	background: #E1EFF7;
 }
 
 .container {
@@ -20,6 +22,14 @@ body {
 	border-radius: 5px; 
 	-moz-border-radius: 5px; 
 	-webkit-border-radius: 5px; 
+}
+
+#drop_target {
+	border: 1em solid transparent;
+}
+
+#drop_target.drop_now {
+	border-color: blue;
 }
 
 .note {
