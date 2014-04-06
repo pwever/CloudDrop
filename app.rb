@@ -30,10 +30,8 @@ class MyApp < Sinatra::Base
 
   # Any file posted to the root is zipped and stored
   post '/' do
-    puts params
-
-
-    unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
+    
+    unless params[:file] && params[:file][:tempfile] && params[:file][:filename]
       @error = "No file selected"
       return @error
     end
@@ -41,7 +39,7 @@ class MyApp < Sinatra::Base
     tmpfile  = params[:file][:tempfile].path
     filename = params[:file][:filename]
     hashname = Digest::SHA1.hexdigest(filename + Time.now.to_s)
-    zippath  = File.join(".", "drops", "%s.zip" % hashname)
+    zip_path = File.join(".", "drops", "%s.zip" % hashname)
     
     if (params[:zippwd] && !params[:zippwd].empty?) then
       # create a encrypted zip archive
@@ -58,7 +56,7 @@ class MyApp < Sinatra::Base
     end
     
     # zip it all up (again) to keep the file system clean
-    Zip::Archive.open(zippath, Zip::CREATE) do |ar|
+    Zip::Archive.open(zip_path, Zip::CREATE) do |ar|
       open(tmpfile) do |f|
         ar.add_buffer(filename, f.read)
       end
@@ -66,8 +64,8 @@ class MyApp < Sinatra::Base
     File.delete(tmpfile)
     
     if (params[:ajax]) then
-      Zip::Archive.open(zippath) do |ar|
-        d = Date.parse(File.mtime(zippath).to_s) + 14
+      Zip::Archive.open(zip_path) do |ar|
+        d = Date.parse(File.mtime(zip_path).to_s) + 14
         erb :post, :layout => false, :locals => {:uri => url("/%s" % hashname), :filename => ar.get_name(0), :filesize => ar.get_stat(0).size.to_human, :expires_on => d.to_s}
       end
     else
